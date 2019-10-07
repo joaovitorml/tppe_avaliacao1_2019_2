@@ -1,0 +1,17 @@
+Questão 1
+
+a) Diferencie interfaces públicas de interfaces publicadas e justifique por que interfaces publicadas não devem ser refatoradas.
+
+R: O termo interfaces publicadas, diferentemente de interfaces públicas, têm um processo específico para alteração de código, sendo necessária a criação de uma nova interface para qualquer mudança, pois depois de uma interface ser publicada, qualquer alteração por parte do desenvolvedor pode quebrá-la para os usuários, e isso inclui a refatoração. Já na interface pública isso não é um problema, visto que os métodos podem ser alterados a qualquer momento.
+
+b) Qual a diferença entre os maus cheiros "Cirurgia com rifle" e "Mudanças divergentes". Responda informando claramente os princípios de projetos que estão sendo violados em cada um dos maus-cheiros.
+
+R: Os dois são o oposto um do outro. Enquanto a cirurgia com rifle faz com que uma pequena mudança altere várias classes diferentes do código, as mudanças divergentes segerem que em uma classe tenham que ser feitas várias mudanças, ao invés de uma só, causando mau-cheiro.
+
+c) Refatoração sempre leva a projetos mais eficientes em termo de desempenho. A afirmativa é verdadeira ou falsa? Justifique.  
+
+R: Falso, nem sempre a refatoração é recomendada por este motivo. Existe sempre o efeito negativo da perda de desempenho ao se tornar um código mais fácil de ser entendido. Porém, um código refatorado é mais facilmente otimizado, o que por vezes compensa a perda inicial e em diversos casos até supera um código sem refatoração em termos de desempenho.
+
+d) Como se tem a garantia de que uma refatoração teve sucesso? 
+
+R: A melhor maneira de garantir o sucesso de uma refatoração é por meio de testes, pois é a partir deles que tem como saber se houve alguma mudança de comportamento no código. Se não houver nenhuma mudança de comportamento, os testes devem passar e a refatoração foi um sucesso.
