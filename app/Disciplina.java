@@ -14,8 +14,19 @@ public class Disciplina {
 
 	public Disciplina(String nome, String departamento, String codigo, int creditosTeoria, int creditosPratica,
 			int creditosExtensao, int creditosEstudos) throws DadosDisciplinaIncompletosException {
-		if (nome == null || codigo == null || creditosTeoria < 0 || creditosPratica < 0 || creditosExtensao < 0 || creditosEstudos < 0 ||
-			nome.equalsIgnoreCase("") || codigo.equalsIgnoreCase("")) {
+		informarDisciplina(nome, codigo, creditosTeoria, creditosPratica, creditosExtensao, creditosEstudos);
+		this.nome = nome; 
+		this.departamento = departamento; 
+		this.codigo = codigo; 
+		this.creditosTeoria = creditosTeoria; 
+		this.creditosPratica = creditosPratica; 
+		this.creditosExtensao = creditosExtensao; 
+		this.creditosEstudos = creditosEstudos;
+	}
+
+	public void informarDisciplina(String nome, String codigo, int creditosTeoria, int creditosPratica,
+			int creditosExtensao, int creditosEstudos) throws DadosDisciplinaIncompletosException {
+		if (errosPreenchimento(nome, codigo, creditosTeoria, creditosPratica, creditosExtensao, creditosEstudos)) {
 			StringBuilder builder = new StringBuilder(); 
 			builder.append("Dados informados para Disciplinas estão inválidos. ");
 			builder.append((nome == null || nome.equalsIgnoreCase("")) ? "Nome: " + nome : null);
@@ -26,13 +37,12 @@ public class Disciplina {
 			builder.append((creditosEstudos < 0) ? "Creditos estudos: " + creditosEstudos : null);
 			throw new DadosDisciplinaIncompletosException(builder.toString());
 		}
-		this.nome = nome; 
-		this.departamento = departamento; 
-		this.codigo = codigo; 
-		this.creditosTeoria = creditosTeoria; 
-		this.creditosPratica = creditosPratica; 
-		this.creditosExtensao = creditosExtensao; 
-		this.creditosEstudos = creditosEstudos;
+	}
+
+	public boolean errosPreenchimento(String nome, String codigo, int creditosTeoria, int creditosPratica,
+			int creditosExtensao, int creditosEstudos) {
+		return nome == null || codigo == null || creditosTeoria < 0 || creditosPratica < 0 || creditosExtensao < 0 || creditosEstudos < 0 ||
+			nome.equalsIgnoreCase("") || codigo.equalsIgnoreCase("");
 	}
 
 	public static Disciplina obterDisciplina(String nome, String departamento, String codigo, int creditosTeoria,

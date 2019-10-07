@@ -17,9 +17,14 @@ public class Professor {
 	public static Professor obterProfessor(String nome, String matricula, String email) throws DadosProfessorIncompletosException {
 		Professor p = null;
 		
-		if (nome == null || nome.equalsIgnoreCase("") ||
-			matricula == null || matricula.equalsIgnoreCase("") || 
-			email == null || email.equalsIgnoreCase("")) {
+		p = informarProfessor(nome, matricula, email, p);
+		
+		return p;
+	}
+
+	public static Professor informarProfessor(String nome, String matricula, String email, Professor p)
+			throws DadosProfessorIncompletosException {
+		if (errosPreenchimento(nome, matricula, email)) {
 			StringBuilder builder = new StringBuilder();
 			builder.append("Dados informados para Professor estão incompletos:");
 			builder.append(nome == null ? "Nome: " + nome : null);
@@ -28,8 +33,13 @@ public class Professor {
 			throw new DadosProfessorIncompletosException(builder.toString());
 		} else 
 			p = new Professor(nome, matricula, email);
-		
 		return p;
+	}
+
+	public static boolean errosPreenchimento(String nome, String matricula, String email) {
+		return nome == null || nome.equalsIgnoreCase("") ||
+			matricula == null || matricula.equalsIgnoreCase("") || 
+			email == null || email.equalsIgnoreCase("");
 	}
 
 	public String getNome() {
